@@ -65,6 +65,15 @@ a.link:hover { text-decoration-color: var(--accent); }
   border-radius: 14px;
 }
 
+/* Neumorphic card — soft extruded shadow, no hard border */
+.neu {
+  background: var(--bg-soft);
+  border-radius: 16px;
+  box-shadow:
+    6px 6px 14px rgba(148, 163, 184, 0.38),
+    -4px -4px 10px rgba(255, 255, 255, 0.92);
+}
+
 .kicker {
   font-family: var(--font-mono), monospace;
   text-transform: uppercase;
@@ -104,8 +113,9 @@ a.link:hover { text-decoration-color: var(--accent); }
   background: var(--accent);
   color: #ffffff;
   border-color: var(--accent);
+  box-shadow: 0 2px 10px rgba(249, 115, 22, 0.32), 0 1px 3px rgba(249, 115, 22, 0.18);
 }
-.btn-primary:hover { background: #ea580c; border-color: #ea580c; color: #ffffff; }
+.btn-primary:hover { background: #ea580c; border-color: #ea580c; color: #ffffff; box-shadow: 0 4px 16px rgba(249, 115, 22, 0.42); }
 
 .tag {
   display: inline-flex;

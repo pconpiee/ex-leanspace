@@ -25,7 +25,7 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* Community teaser */}}
+      {/* Community teaser */}
       <Section kicker="the network" title="20 alumni. A denser network than it looks." className="border-t hairline">
         <p className="text-[color:var(--fg-soft)] max-w-2xl leading-relaxed mb-6">
           Product managers, engineers, BDMs, solutions architects, marketing leads — 

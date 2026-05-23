@@ -12,15 +12,13 @@ export function SiteFooter() {
           </p>
         </div>
         <div>
-          <div className="kicker mb-2">Site</div>
+          <div className="kicker mb-2">The journey</div>
           <ul className="space-y-1.5 text-[color:var(--fg-soft)]">
-            <li><Link href="/directory">Alumni directory</Link></li>
+            <li><Link href="/reorient">R — Reorient</Link></li>
+            <li><Link href="/objectives">O — Objectives</Link></li>
+            <li><Link href="/wrestle">W — Wrestle</Link></li>
+            <li><Link href="/directory">People</Link></li>
             <li><Link href="/recommendations">Recommendations</Link></li>
-            <li><Link href="/pathways">Career pathways</Link></li>
-            <li><Link href="/skills">AI skills & prompts</Link></li>
-            <li><Link href="/networking">Networking</Link></li>
-            <li><Link href="/leadership">Leadership</Link></li>
-            <li><Link href="/org">The work we did</Link></li>
           </ul>
         </div>
         <div>

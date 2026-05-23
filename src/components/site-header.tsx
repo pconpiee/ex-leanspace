@@ -5,12 +5,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const nav = [
-  { href: "/directory", label: "Directory" },
-  { href: "/recommendations", label: "Recommendations" },
-  { href: "/pathways", label: "Pathways" },
-  { href: "/skills", label: "AI Prompts" },
-  { href: "/networking", label: "Networking" },
-  { href: "/org", label: "The work" },
+  { href: "/reorient", label: "R — Reorient" },
+  { href: "/objectives", label: "O — Objectives" },
+  { href: "/wrestle", label: "W — Wrestle" },
+  { href: "/directory", label: "People" },
 ];
 
 export function SiteHeader() {
@@ -46,8 +44,8 @@ export function SiteHeader() {
           })}
         </nav>
         <div className="flex items-center gap-2">
-          <Link href="/directory" className="hidden md:inline-flex btn btn-primary text-xs">
-            Find alumni →
+          <Link href="/reorient" className="hidden md:inline-flex btn btn-primary text-xs">
+            Start here →
           </Link>
           <button
             className="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-1.5 rounded-md hover:bg-[color:var(--panel)] transition"

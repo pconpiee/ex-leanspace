@@ -9,113 +9,128 @@ export default function Home() {
         <Container className="pt-16 md:pt-24 pb-14">
           <div className="kicker mb-5">for alumni of leanspace.io</div>
           <h1 className="text-4xl md:text-6xl font-medium tracking-tight max-w-3xl leading-[1.05]">
-            Your Leanspace network
+            Find the role that was
             <br />
-            <span className="text-[color:var(--accent)]">is your unfair advantage.</span>
+            <span className="text-[color:var(--accent)]">worth leaving for.</span>
           </h1>
-          <p className="lede mt-6 max-w-lg">
-            20 people you can reach out to today. They know exactly what you built there — and can tell hiring managers.
+          <p className="lede mt-6 max-w-xl">
+            One goal: land your next job — better pay, better fit, a real arc for the next five years.
+            The framework is <span className="font-medium text-[color:var(--fg)]">ROW</span>.
+            Three phases. Everything you need is here.
           </p>
-          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-2 items-baseline">
-            <Stat n="20" label="alumni" />
-            <Stat n="5" label="career paths" />
-            <Stat n="20+" label="AI prompts" />
-            <span className="mono text-xs text-[color:var(--accent)]">free · no signup</span>
-          </div>
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
-            <Link href="/directory" className="btn btn-primary">Browse the directory →</Link>
-            <Link href="#paths" className="btn">Not sure where to start?</Link>
+            <Link href="/reorient" className="btn btn-primary">Start with R — Reorient →</Link>
+            <Link href="/directory" className="btn">Browse the alumni →</Link>
           </div>
         </Container>
       </section>
 
-      {/* Guided paths */}
-      <Section id="paths" kicker="your situation" title="Pick where you are." className="border-t hairline">
-        <div className="grid md:grid-cols-3 gap-5 mt-2">
-          <PathCard
-            n="01"
-            title="I need someone to vouch for me."
-            desc="Find the right person in the directory. Then ask them the right way."
-            primary={{ href: "/directory", label: "Browse the directory" }}
-            secondary={{ href: "/recommendations", label: "How to ask" }}
+      {/* ROW intro */}
+      <Section className="border-t hairline" kicker="the framework">
+        <div className="panel p-5 md:p-6 border-l-2 border-[color:var(--accent)] max-w-2xl">
+          <p className="text-[color:var(--fg-soft)] leading-relaxed">
+            How do you get a boat from one shore to another? You <strong className="text-[color:var(--fg)]">ROW</strong>.
+            Leanspace is the shore you left. Your next role is the other side.
+            The water between is confusing, sometimes frustrating, and has no map.
+            ROW is the map.
+          </p>
+        </div>
+      </Section>
+
+      {/* The three phases */}
+      <Section kicker="three phases, in order" className="border-t hairline">
+        <div className="grid md:grid-cols-3 gap-5">
+          <PhaseCard
+            letter="R"
+            label="Reorient"
+            href="/reorient"
+            sub="Where are we coming from? Where are we at now? Where are we going next?"
+            bullets={[
+              "What Leanspace actually gave you",
+              "The post-startup transition (nobody talks about this)",
+              "Six destinations — pick one or two",
+            ]}
           />
-          <PathCard
-            n="02"
-            title="I'm figuring out my next move."
-            desc="Where do Leanspace PMs, engineers, and BDMs land? How do you position what you did there?"
-            primary={{ href: "/pathways", label: "Career pathways" }}
-            secondary={{ href: "/skills", label: "Grab an AI prompt" }}
+          <PhaseCard
+            letter="O"
+            label="Objectives"
+            href="/objectives"
+            sub="What are we trying to do? What is keeping us from doing it? What are the steps?"
+            bullets={[
+              "Define the specific target — role, company type, comp",
+              "Build your story from the projects you worked on",
+              "Translate your function for where you're going",
+            ]}
           />
-          <PathCard
-            n="03"
-            title="I want to get in front of people."
-            desc="Conferences, communities, and four outreach protocols for getting into rooms where people are hiring."
-            primary={{ href: "/networking", label: "Networking guide" }}
+          <PhaseCard
+            letter="W"
+            label="Wrestle"
+            href="/wrestle"
+            sub="Have a plan. Know it will be hard. Persevere. Look for opportunities. Be bold."
+            bullets={[
+              "Network with intention — four plays",
+              "Interview prep and STAR stories from Leanspace",
+              "Negotiate. Give recs. Help who comes after you.",
+            ]}
           />
         </div>
       </Section>
 
-      {/* Browse all */}
-      <Section kicker="or browse on your own" title="Everything in one place.">
-        <div className="grid md:grid-cols-2 gap-5">
-          <NavCard href="/directory" title="Alumni directory" desc="20 Leanspacers — where they landed, what they do now, and how to reach them." />
-          <NavCard href="/recommendations" title="Recommendation templates" desc="How to ask for a LinkedIn rec, how to write one, and a ready-to-paste AI prompt." />
-          <NavCard href="/pathways" title="Career pathways" desc="By function — PM, SA, BDM, Engineer. Where Leanspace experience translates." />
-          <NavCard href="/skills" title="AI prompts" desc="Copy-paste prompts for cover letters, interviews, salary negotiation, and profile rewrites." />
-          <NavCard href="/networking" title="Networking guide" desc="Four outreach protocols, every relevant conference, and the communities worth joining." />
+      {/* Network CTA */}
+      <Section kicker="the network" className="border-t hairline">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="max-w-lg">
+            <h2 className="text-xl font-semibold mb-2">20 alumni. Current roles. LinkedIn handles.</h2>
+            <p className="text-[color:var(--fg-soft)] text-sm leading-relaxed">
+              The directory is where the network becomes concrete — who&apos;s where, what they do now, and how to reach them.
+              A warm intro from here is worth more than forty cold applications.
+            </p>
+          </div>
+          <Link href="/directory" className="btn btn-primary flex-none">
+            Browse the directory →
+          </Link>
         </div>
       </Section>
     </>
   );
 }
 
-function PathCard({
-  n,
-  title,
-  desc,
-  primary,
-  secondary,
+function PhaseCard({
+  letter,
+  label,
+  href,
+  sub,
+  bullets,
 }: {
-  n: string;
-  title: string;
-  desc: string;
-  primary: { href: string; label: string };
-  secondary?: { href: string; label: string };
+  letter: string;
+  label: string;
+  href: string;
+  sub: string;
+  bullets: string[];
 }) {
   return (
-    <div className="neu p-6 flex flex-col gap-4">
-      <div className="mono text-[10px] tracking-widest text-[color:var(--accent)] opacity-60 uppercase">{n}</div>
-      <div className="flex-1">
-        <h3 className="text-base font-medium leading-snug mb-2">{title}</h3>
-        <p className="text-sm text-[color:var(--fg-soft)] leading-relaxed">{desc}</p>
+    <Link href={href} className="neu p-6 flex flex-col gap-4 hover:shadow-lg transition group">
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-10 rounded-full bg-[color:var(--accent)] text-white flex items-center justify-center mono text-lg font-bold flex-none group-hover:scale-110 transition">
+          {letter}
+        </div>
+        <div>
+          <div className="font-semibold text-[color:var(--fg)]">{label}</div>
+          <div className="mono text-xs text-[color:var(--fg-mute)]">{href}</div>
+        </div>
       </div>
-      <div className="flex flex-col gap-2">
-        <Link href={primary.href} className="btn btn-primary text-center w-full">{primary.label} →</Link>
-        {secondary && (
-          <Link href={secondary.href} className="text-center mono text-xs text-[color:var(--fg-mute)] hover:text-[color:var(--accent)] transition py-1">
-            {secondary.label} →
-          </Link>
-        )}
+      <p className="text-xs text-[color:var(--fg-mute)] leading-relaxed italic">{sub}</p>
+      <ul className="space-y-1.5 mt-auto">
+        {bullets.map((b) => (
+          <li key={b} className="flex gap-2 text-sm text-[color:var(--fg-soft)]">
+            <span className="text-[color:var(--accent)] flex-none mt-0.5">·</span>
+            <span>{b}</span>
+          </li>
+        ))}
+      </ul>
+      <div className="mono text-xs text-[color:var(--accent)] group-hover:underline">
+        Open {label} →
       </div>
-    </div>
-  );
-}
-
-function Stat({ n, label }: { n: string; label: string }) {
-  return (
-    <span className="flex items-baseline gap-1.5">
-      <strong className="text-xl font-medium text-[color:var(--fg)]">{n}</strong>
-      <span className="text-sm text-[color:var(--fg-mute)]">{label}</span>
-    </span>
-  );
-}
-
-function NavCard({ href, title, desc }: { href: string; title: string; desc: string }) {
-  return (
-    <Link href={href} className="neu p-5 transition-shadow hover:shadow-[8px_8px_18px_rgba(148,163,184,0.46),-5px_-5px_14px_rgba(255,255,255,0.96)] group">
-      <h3 className="text-base mb-1 group-hover:text-[color:var(--accent)] transition">{title}</h3>
-      <p className="text-sm text-[color:var(--fg-soft)]">{desc}</p>
-      <div className="mt-3 mono text-xs text-[color:var(--fg-mute)]">open →</div>
     </Link>
   );
 }

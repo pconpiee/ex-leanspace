@@ -9,10 +9,10 @@ export const metadata = {
 
 const projects = [
   {
-    name: "Mission Planning Suite (MPS Lite)",
-    what: "Leanspace's first shipped product — orbital mission planning software used in production by paying satellite operators.",
+    name: "MPS Lite (Mission Planning & Scheduling)",
+    what: "Leanspace\'s mission planning app — the flagship of the MPS product line, used in production by paying satellite operators.",
     bullets: {
-      "PM / SA": ["Shipped a 0→1 orbital mission planning product used in production by paying customers", "Defined requirements with no formal spec handoff — translated operator workflows into features", "Managed delivery across a distributed FR/US team against real mission timelines"],
+      "PM / SA": ["Shipped MPS Lite — the flagship app of the MPS product line (services: Plans, Resources, Orbits) — into production with paying operators", "Defined requirements with no formal spec handoff — translated operator workflows into features", "Managed delivery across a distributed FR/US team against real mission timelines"],
       "BD / Sales": ["Positioned a new product category (cloud-native MPS) into a market of legacy tools", "Closed early adopter deals while product was still in development", "Built the competitive narrative against incumbent tools costing 10× the price"],
       "Engineering": ["Built cloud-native mission planning infrastructure used in production for orbital operations", "Delivered multi-tenant SaaS architecture handling mission-critical timing constraints", "Maintained sub-second UI performance for planning scenarios with hundreds of orbit passes"],
       "Marketing": ["Launched a category-defining product with no prior market awareness — built the category first", "Created conference presence and technical content at SmallSat 2023–2025", "Generated inbound pipeline through content targeting constellation operators"],
@@ -39,10 +39,12 @@ const projects = [
   },
   {
     name: "Quantum Space (US Customer)",
-    what: "Leanspace's first American customer — a deep-space mission operator and proof point for transatlantic expansion.",
+    what: "Leanspace\'s first American customer — a deep-space mission operator and proof point for transatlantic expansion. Required AWS GovCloud delivery and US compliance.",
     bullets: {
-      "BD / Sales": ["Closed Leanspace's first US customer — Quantum Space, a deep space mission operator", "Navigated US procurement and export control considerations for space software", "Built the US market entry case that supported the Series A commercial narrative"],
-      "PM / SA": ["Ran transatlantic customer onboarding across timezone and compliance constraints", "Documented the reusable US-customer onboarding playbook"],
+      "BD / Sales": ["Closed Leanspace\'s first US customer — Quantum Space, a deep space mission operator", "Navigated US procurement and export control considerations for space software", "Built the US market entry case that supported the Series A commercial narrative"],
+      "PM / SA": ["Ran transatlantic customer onboarding across timezone and compliance constraints", "Documented the reusable US-customer onboarding playbook", "Translated US compliance requirements (GovCloud, data residency) into product specs"],
+      "Engineering": ["Delivered AWS GovCloud deployment to meet US data residency requirements — a new infrastructure target for the platform", "Configured multi-region architecture to support a deep-space customer with mission-critical uptime requirements"],
+      "Ops / CoS": ["Coordinated US compliance review across legal, engineering, and product for the GovCloud delivery"],
     },
   },
   {
@@ -123,14 +125,18 @@ export default function ObjectivesPage() {
             </p>
             <div className="space-y-2">
               {[
-                { label: "LinkedIn Jobs", note: "Filter by company stage and sector, not just keyword" },
-                { label: "SpaceJobs.global", note: "Space-specific board — good for NewSpace and institutional" },
-                { label: "Wellfound / AngelList", note: "Startup-focused — Series A–C roles" },
-                { label: "Company career pages", note: "Most good roles aren't on job boards at all" },
-                { label: "VC portfolio pages", note: "42CAP, Karista, ISAI, Capgemini Ventures — companies they back" },
-              ].map(({ label, note }) => (
+                { label: "LinkedIn Jobs", url: null, note: "Filter by company stage and sector, not just keyword" },
+                { label: "SpaceCrew", url: "https://spacecrew.com", note: "Space-specific board — good for NewSpace and institutional" },
+                { label: "Wellfound / AngelList", url: null, note: "Startup-focused — Series A–C roles" },
+                { label: "Company career pages", url: null, note: "Most good roles aren't on job boards at all" },
+                { label: "VC portfolio pages", url: null, note: "42CAP, Karista, ISAI, Capgemini Ventures — companies they back" },
+              ].map(({ label, url, note }) => (
                 <div key={label} className="flex gap-3 panel p-3 text-xs">
-                  <span className="font-medium text-[color:var(--fg)] flex-none w-32">{label}</span>
+                  {url ? (
+                    <a href={url} target="_blank" rel="noopener noreferrer" className="font-medium text-[color:var(--accent)] hover:underline flex-none w-32">{label} ↗</a>
+                  ) : (
+                    <span className="font-medium text-[color:var(--fg)] flex-none w-32">{label}</span>
+                  )}
                   <span className="text-[color:var(--fg-soft)]">{note}</span>
                 </div>
               ))}

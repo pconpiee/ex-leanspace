@@ -30,17 +30,6 @@ export default async function PathwayPage({ params }: { params: Promise<{ slug: 
         lede={p.oneLine}
       />
 
-      <Section kicker="reporting chain">
-        <div className="panel p-5 mono text-sm text-[color:var(--fg-soft)] flex flex-wrap items-center gap-3">
-          {p.reportingChain.map((r, i) => (
-            <span key={r} className="flex items-center gap-3">
-              <span>{r}</span>
-              {i < p.reportingChain.length - 1 && <span className="text-[color:var(--fg-mute)]">↑</span>}
-            </span>
-          ))}
-        </div>
-      </Section>
-
       <Section kicker="what you actually did" title="In a sentence — and then concretely.">
         <ul className="space-y-3 max-w-3xl">
           {p.whatYouActuallyDid.map((item, i) => (
@@ -67,7 +56,7 @@ export default async function PathwayPage({ params }: { params: Promise<{ slug: 
         </div>
       </Section>
 
-      <Section kicker="artefacts to collect" title="Before you leave — the receipts.">
+      <Section kicker="artefacts to collect" title="The receipts — what makes your experience provable.">
         <div className="grid md:grid-cols-2 gap-6">
           <ul className="space-y-2.5 text-[color:var(--fg-soft)] text-[15px] leading-7">
             {p.artifactsToCollect.map((a) => (

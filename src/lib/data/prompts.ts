@@ -61,17 +61,17 @@ My Leanspace context: [paste your role section here]
   },
   {
     id: "interview-prep-bd",
-    title: "Mock interview — Director of BD at a defense-tech / dual-use company",
+    title: "Mock interview — Director of BD at a European defense-tech / dual-use company",
     audience: ["interview prep"],
     function: ["BDM"],
-    body: `You are the SVP of Sales at [target dual-use / defense-tech company]. I'm a former Leanspace BDM (US Operations) applying for Director of BD. The role requires federal capture experience and willingness to obtain US clearance.
+    body: `You are the VP of Sales at [target European defense-tech / dual-use company — e.g. Helsing, Exail, Tekever, CS Group, Palantir EU, Thales DS]. I'm a former Leanspace BDM applying for Director of BD. The role requires institutional capture experience in a European defense procurement context.
 
 Run a realistic 60-minute interview structured as:
 1. (10m) Walk me through the most impressive deal I've worked on. Probe on whose voice it was — mine or my CCO's.
-2. (15m) Federal capture: ask me to describe an RFP/RFI I led. Test fluency on SBIR/STTR, OTAs, SAM.gov, NIST, ITAR/EAR.
-3. (15m) Partnership structuring: I've structured with Capgemini Federal and Qwaltec. Ask what I learned about teaming vs prime/sub dynamics.
-4. (10m) Personal motivation: why this market, why now, why not stay in space.
-5. (10m) Negotiate: tell me what comp would make me sign and react to my number.
+2. (15m) European institutional capture: ask me to describe a bid I led. Test fluency on OCCAR, EDA, ESA-STAR, DGA, BMVg, and EU Defence Fund processes. Push on how I navigated dual-use classification and export considerations (EU dual-use regulation 2021/821).
+3. (15m) Partnership structuring: I've structured with Capgemini and space-sector integrators. Ask what I learned about teaming vs prime/sub dynamics in European procurement.
+4. (10m) Personal motivation: why this market (defense-tech), why now (post-2022 EU rearmament), why not stay in space.
+5. (10m) Negotiate: tell me what comp would make me sign and react to my number. Use European market norms (base + bonus structure, options rather than RSUs unless UK/US-listed entity).
 
 At the end give me a written debrief — strong points, gaps, and three things I should fix before the on-site.
 
@@ -80,18 +80,18 @@ My Leanspace context: [paste BDM role section here]
   },
   {
     id: "interview-prep-sa",
-    title: "Mock interview — Forward Deployed Engineer at Palantir / Anduril",
+    title: "Mock interview — Solutions / Field Engineer at a European defense-tech company",
     audience: ["interview prep"],
     function: ["SA"],
-    body: `You are an engineering manager hiring Forward Deployed Engineers at [Palantir USG | Anduril | Shield AI | …]. I'm a former Leanspace Solutions Architect.
+    body: `You are an engineering manager hiring Solutions or Field Engineers at [Helsing | Exail | Palantir EU | CS Group | Thales Digital | Airbus DS Digital | …]. I'm a former Leanspace Solutions Architect.
 
 Run a realistic 90-minute loop with these stages:
-1. (20m) Technical depth — walk me through a customer architecture I designed. Probe on cloud, security, scale.
+1. (20m) Technical depth — walk me through a customer architecture I designed. Probe on cloud, security, data sovereignty (EU GDPR, French SecNumCloud, German BSI C5), scale.
 2. (20m) Customer fluency — describe a deal where customer reality contradicted the original scope. How did I handle it?
-3. (15m) Code or systems exercise — ask me to whiteboard a small system based on a customer brief you invent.
-4. (15m) AI fluency — I built the v0-based prototyping workflow at Leanspace. Probe on what generalises and what doesn't.
-5. (10m) Defense-tech motivation — why move out of pure space and into dual-use.
-6. (10m) Compensation and clearance — see if I understand the trade.
+3. (15m) Code or systems exercise — ask me to whiteboard a small system based on a customer brief you invent. Relevant to a European defense or space-tech context.
+4. (15m) AI fluency — I built the v0-based prototyping workflow at Leanspace. Probe on what generalises and what doesn't in a regulated European context.
+5. (10m) Defense-tech motivation — why move out of pure space and into dual-use / defense.
+6. (10m) Compensation and clearance — European clearance processes differ from US; probe on French habilitation, German Überprüfung, or UK DV as relevant to the company.
 
 End with a hire / no-hire call and three rounds-of-improvement notes.
 
@@ -126,28 +126,29 @@ Target ask: [video call / coffee / async question / referral]
   },
   {
     id: "salary-negotiation",
-    title: "Salary negotiation prep — base, equity, signing, total",
+    title: "Salary negotiation prep — base, bonus, equity, total",
     audience: ["offer stage"],
     function: ["All"],
-    body: `Act as a compensation analyst who has placed candidates at NewSpace, defense-tech, and prime contractors in the last 12 months.
+    body: `Act as a compensation analyst who has placed candidates at NewSpace companies, European defense-tech, and prime contractors in the last 12 months. Most candidates you see are based in France, Germany, UK, Spain, or India.
 
 Inputs:
 - Current Leanspace comp: [base €X / equity Y / bonus structure / signing N/A]
-- Target role: [Senior PM | Director of BD | FDE | …]
+- Target role: [Senior PM | Director of BD | Solutions Engineer | …]
 - Target company: [name + stage + last round + headcount]
-- Target geography: [Strasbourg / Paris / Munich / London / Denver / DC / SF]
+- Target geography: [Strasbourg / Paris / Munich / Berlin / London / Bangalore / Toulouse / Madrid]
 - My BATNA: [other offer or current role retention case]
 
 Output:
-1. A market band (10th / 50th / 90th percentile) for the target role at that company stage and geo, citing comparable companies.
-2. A specific number I should anchor on for base, signing, and equity grant size.
+1. A market band (10th / 50th / 90th percentile) for the target role at that company stage and geography, citing comparable companies. Use European market data — Glassdoor EU, LinkedIn Salary EU, talent.io (French tech), levels.fyi EU coverage, Jobted, Payscale EU.
+2. A specific number I should anchor on for base, signing bonus, and any variable/equity grant. Note: most European companies pay bonus not RSUs unless they're UK/US-listed or Series B+ with option pool.
 3. The two leverage points I should use in the next conversation (and which to hold back).
-4. Three counters the company is likely to make, and my response to each.
+4. Three counters the company is likely to make under European negotiation norms, and my response to each.
 5. The single behaviour most likely to lose me 5–15% comp if I do it.
+6. India-specific note if target geography is Bangalore: flag the CTC vs in-hand gap; probe on variable pay percentage and ESOP structure.
 
 Be specific. Numbers only — no "depending on …" hedges.
 `,
-    notes: "Use levels.fyi, Pave, Carta benchmarks, and space-careers.com for cross-check.",
+    notes: "Use talent.io (France), Glassdoor EU, LinkedIn Salary, and levels.fyi EU coverage for cross-check. For UK roles also check Totaljobs and ITJobsWatch.",
   },
   {
     id: "founder-thesis",

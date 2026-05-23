@@ -96,6 +96,20 @@ a.link:hover { text-decoration-color: var(--accent); }
   background: linear-gradient(90deg, transparent, var(--panel-border), transparent);
 }
 
+.input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--panel-border);
+  background: var(--bg);
+  color: var(--fg);
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.input:focus { border-color: var(--accent); }
+.input::placeholder { color: var(--fg-mute); }
+
 .btn {
   display: inline-flex;
   align-items: center;

@@ -5,7 +5,6 @@ export type Pathway = {
   function: string;
   short: string;
   oneLine: string;
-  reportingChain: string[];
   whatYouActuallyDid: string[];
   skillsAcquired: { area: string; items: string[] }[];
   artifactsToCollect: string[];
@@ -20,10 +19,9 @@ export const pathways: Pathway[] = [
     function: "Product Manager",
     short: "PM",
     oneLine:
-      "Owned a product line end-to-end — discovery, roadmap, delivery, customer success — for one of three Leanspace product domains (Mission Control, Mission Planning & Flight Dynamics, or Assembly Integration & Testing).",
-    reportingChain: ["CEO/CPO (Guillaume Tanier)", "CTO (initially Gaurav Lanjekar, later Gert Villemos)"],
+      "Owned a product line end-to-end — discovery, roadmap, delivery, customer success — for one of three Leanspace product domains (MCS · Mission Control System, MPS · Mission Planning & Scheduling, or AIT · Assembly Integration & Testing).",
     whatYouActuallyDid: [
-      "Launched whole product lines (e.g. Orbits, Resources, Plans, MPS Lite for Mission Planning) — not features inside someone else's product.",
+      "Shipped apps and services across the three product lines — MCS (apps: C2 IOD, C2 Pro; services: Commands, Metrics, Pass Orchestrator), AIT (app: Test Lite; services: Synoptics, Test Data Manager), MPS (apps: MPS Lite, IMAQ, IOS Planner; services: Plans, Resources, Orbits) — not features inside someone else\'s product.",
       "Discovery with FDS engineers, mission planners, and operators across EO constellations, IOD, SatCom, IOT, hosted-payload missions.",
       "Wrote technical proposals for grants (Umbrella €10.5M France 2030 won; Japetus €70K CNES led; Constellation contributed).",
       "Retained at-risk customers by demoing prototypes — turned churn risk into renewal.",
@@ -61,11 +59,11 @@ export const pathways: Pathway[] = [
       },
     ],
     artifactsToCollect: [
-      "List of products you launched, with launch date + first-customer milestone",
-      "Grant submissions where you authored technical sections — name them",
-      "Customers you onboarded to first orbital ops — these are flight-heritage references",
-      "Demo videos / conference talks — get the recording before you leave",
-      "Pricing decisions and the data you used to justify them",
+      "List of products you launched or contributed to — with launch date and first-customer milestone.",
+      "Grant submissions where you authored technical sections — name them and the outcome.",
+      "Customers you onboarded to first orbital ops — these are flight-heritage references.",
+      "Demo videos / conference talks — gather recordings and slide decks now while they\'re easy to find.",
+      "Pricing decisions and the data you used to justify them.",
     ],
     signalToBroadcast: [
       "\"I shipped a flight-proven product line in a 50-person company\" — most PMs at primes never get this.",
@@ -111,9 +109,8 @@ export const pathways: Pathway[] = [
     short: "SA",
     oneLine:
       "The technical bridge between Commercial and Engineering — qualified deals, designed PoCs, owned the technical handover into delivery, and stayed embedded with strategic accounts.",
-    reportingChain: ["CCO (Alvaro Alonso Ruiz)", "CTO (Gert Villemos)"],
     whatYouActuallyDid: [
-      "Designed space-system architectures mapping customer missions onto Leanspace's three product lines (MP, MCS, SST).",
+      "Designed space-system architectures mapping customer missions onto Leanspace\'s three product lines (MCS · Mission Control, MPS · Mission Planning & Scheduling, AIT · Assembly Integration & Testing).",
       "Defined and scoped PoCs that customers actually paid for — not free pilots.",
       "Led technical handover from presales into Solutions Engineering delivery.",
       "Stayed in the customer relationship long after signing — surfaced expansion and product-feedback signals to PM.",
@@ -199,7 +196,6 @@ export const pathways: Pathway[] = [
     short: "BDM",
     oneLine:
       "Owned a geography (US or Rest of World) end-to-end — pipeline, partnerships, capture, and institutional engagement — at a 50-person platform competing with primes for $M+ deals.",
-    reportingChain: ["CCO (Alvaro Alonso Ruiz)"],
     whatYouActuallyDid: [
       "Built a country-level GTM from a zero-pipeline start (US: NewSpace operators, primes, integrators, DoD, NASA, Space Force).",
       "Closed paid PoCs (ST Engineering €20K C2 Pro + IMAQ Planner) and downselect rounds (USEI Diamondlink final round).",
@@ -286,7 +282,6 @@ export const pathways: Pathway[] = [
     short: "Eng",
     oneLine:
       "Frontend, backend, full-stack, or QA on a cloud-native, API-first platform that runs live spacecraft operations — flight heritage on your CV from a 50-person company.",
-    reportingChain: ["Tech Leads (Olivier Coutin BE, Yannick Lohse FE) → VP Engineering (Stan Kaethler) → CTO (Gert Villemos)"],
     whatYouActuallyDid: [
       "Shipped code that runs in real satellite operations — not demos, not internal tools.",
       "Worked across the C2, planning, FDS, and AIT product lines depending on team rotation.",
@@ -322,8 +317,8 @@ export const pathways: Pathway[] = [
       },
     ],
     artifactsToCollect: [
-      "Public conference talks if you spoke (SmallSat side-meetings, Space Symposium demos).",
-      "Open-source contributions you made on company time, if any — get permission before leaving.",
+      "Public conference talks if you gave any (SmallSat side-meetings, Space Symposium demos).",
+      "Open-source contributions you made on company time, if any — note what's attributable.",
       "Architecture decisions you owned — diagrams sanitised for portfolio use.",
       "Performance / scale numbers you can cite without breaching NDA.",
       "Incident postmortems you led — these are gold for senior interviews.",
@@ -331,7 +326,7 @@ export const pathways: Pathway[] = [
     signalToBroadcast: [
       "\"I shipped production software that flew\" — bypasses 80% of generic SaaS interviews.",
       "\"I worked under ISO 27001 / regulated-customer constraints\" — relevant to defense, fintech, health.",
-      "\"My PMs were ex-Telespazio/NASA/ESA\" — your domain exposure is real, not buzzword.",
+      "\"My tech leads were ex-Space Force / Thales / Telespazio / OHB / ESA\" — your domain exposure is real, not buzzword.",
     ],
     nextRoles: [
       {
@@ -372,7 +367,6 @@ export const pathways: Pathway[] = [
     short: "SE/DE",
     oneLine:
       "Embedded subject-matter expert (launchers, AIT, FDS, or ground stations) inside the Solutions team — designed and delivered the technical reality of what was sold.",
-    reportingChain: ["Solutions team leads → CTO (Gert Villemos) / CCO (Alvaro Alonso Ruiz)"],
     whatYouActuallyDid: [
       "Lent deep domain credibility to sales motions where customers tested the vendor's literacy.",
       "Co-owned NRE delivery with Solutions Architects on signed contracts.",
@@ -423,7 +417,6 @@ export const pathways: Pathway[] = [
     short: "GTM",
     oneLine:
       "The lateral functions that made the Leanspace brand legible to a buying audience that didn't believe NewSpace could sell to primes.",
-    reportingChain: ["Marketing → CCO (Alvaro Alonso Ruiz)", "Design → CTO / Product", "Project Mgmt → CEO/CPO"],
     whatYouActuallyDid: [
       "Design: built dense, technical UIs that operators actually used in live missions (not marketing fluff).",
       "Marketing: produced credible technical content for a buyer audience of engineers and procurement officers.",
@@ -464,7 +457,6 @@ export const pathways: Pathway[] = [
     short: "Ops",
     oneLine:
       "The invisible scaffolding that lets a 50-person platform compete with primes — international payroll, multi-currency contracts, board reporting, scheduling across founders, customers, and investors.",
-    reportingChain: ["Head of Finance & Business Ops (Léa Raiche-Marsden) → CEO (Guillaume Tanier)"],
     whatYouActuallyDid: [
       "Ran finance for a VC-backed scale-up: grant accounting (CNES, France 2030), Series A reporting, multi-entity setup (FR + US).",
       "Ops: vendor management, office and remote-team operations across Strasbourg + Denver.",
@@ -512,7 +504,6 @@ export const pathways: Pathway[] = [
     short: "Exec",
     oneLine:
       "The founders, CCO, CTO, VP Engineering — the layer that defines what \"the company\" means and absorbs the risk when it doesn't.",
-    reportingChain: ["Board (42CAP, Karista, ISAI, Capgemini Ventures, Qwaltec, angels)"],
     whatYouActuallyDid: [
       "Set strategy: which markets, which products, which institutional contracts to bid.",
       "Raised €6M seed (2022) and €10M Series A (Nov 2025) with strategic investors including Capgemini Ventures and Qwaltec.",

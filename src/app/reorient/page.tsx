@@ -9,19 +9,39 @@ export const metadata = {
 const destinations = [
   {
     id: "newspace",
+    icon: "🛰️",
     label: "Stay in the mission",
     tag: "NewSpace · ground segment · constellation ops",
-    where: "Open Cosmos · D-Orbit · Kognia · leaf space · HEO · Exotrail · Unseenlabs · Major Tom",
+    companies: [
+      { name: "Open Cosmos", url: "https://opencosmos.com" },
+      { name: "D-Orbit", url: "https://dorbit.space" },
+      { name: "Kognia Space", url: "https://kognia.com" },
+      { name: "leaf space", url: "https://leaf.space" },
+      { name: "HEO", url: "https://heo.com" },
+      { name: "Exotrail", url: "https://exotrail.com" },
+      { name: "Unseenlabs", url: "https://unseenlabs.com" },
+      { name: "Major Tom", url: "https://majortom.space" },
+    ],
     comp: "€55K–€180K",
     for: "PMs · SAs · Engineers",
-    note: "The easiest translation — your domain vocabulary lands without explanation. The market is small; the Leanspace badge travels fast. Flight-heritage software on a CV clears most screens before you open your mouth.",
+    note: "The easiest translation — your domain vocabulary lands without explanation. The market is small; people know Leanspace. Flight-heritage software on a CV clears most screens before you open your mouth.",
     color: "var(--blue)",
   },
   {
     id: "defense",
+    icon: "🎯",
     label: "Follow the money",
     tag: "Defense-tech · dual-use · sovereign AI",
-    where: "Helsing · Exail · Palantir EU · Anduril EU · Quantum Systems · Tekever · CS Group · Thales · Airbus DS",
+    companies: [
+      { name: "Helsing", url: "https://helsing.ai" },
+      { name: "Exail", url: "https://www.exail.com" },
+      { name: "Palantir EU", url: "https://www.palantir.com" },
+      { name: "Anduril EU", url: "https://www.anduril.com" },
+      { name: "Quantum Systems", url: "https://quantum-systems.com" },
+      { name: "Tekever", url: "https://www.tekever.com" },
+      { name: "CS Group", url: "https://www.csgroup.eu" },
+      { name: "Duality AI", url: "https://duality.ai" },
+    ],
     comp: "€80K–€280K+ (EU) · $120K–$350K+ (US)",
     for: "SAs · BDMs · Engineers · PMs",
     note: "EU defense budgets doubled post-2022. Your 'regulated environment + fast delivery + real missions' story is the entry ticket in both geographies. Clearance is a plus but rarely a hard requirement at first.",
@@ -29,9 +49,17 @@ const destinations = [
   },
   {
     id: "prime",
+    icon: "🏛️",
     label: "Trade speed for stability",
     tag: "Prime contractors · space agencies",
-    where: "Airbus DS · Thales · OHB · GMV · Telespazio · ESA-adjacent programmes",
+    companies: [
+      { name: "Airbus DS", url: "https://www.airbus.com/en/space" },
+      { name: "Thales Alenia Space", url: "https://www.thalesaleniaspace.com" },
+      { name: "OHB", url: "https://www.ohb.de" },
+      { name: "GMV", url: "https://www.gmv.com" },
+      { name: "Telespazio", url: "https://www.telespazio.com" },
+      { name: "ESA careers", url: "https://jobs.esa.int" },
+    ],
     comp: "€50K–€120K",
     for: "all functions",
     note: "Slower. Safer. More process than Leanspace. Good if you want to stay in space without startup risk. Flight heritage and software-on-real-missions clears their procurement bars.",
@@ -39,9 +67,10 @@ const destinations = [
   },
   {
     id: "saas",
+    icon: "🔁",
     label: "Run it back",
     tag: "B2B SaaS · Series A–C scale-ups",
-    where: "Any sector. The pattern is the same.",
+    companies: [],
     comp: "€65K–€220K + equity",
     for: "PMs · BDMs · SAs",
     note: "Regulated customer, complex product, constrained team, shipping anyway. The domain changes. The playbook doesn't. Most Series A–C companies have never heard of Leanspace — your story lands fresh.",
@@ -49,19 +78,32 @@ const destinations = [
   },
   {
     id: "founder",
+    icon: "🚀",
     label: "Start the thing",
     tag: "Spinout · NewSpace · dual-use",
-    where: "VC-backed or bootstrapped — you pick the cap table",
+    companies: [
+      { name: "Seraphim Capital", url: "https://seraphimcapital.com" },
+      { name: "E2MC", url: "https://e2mc.space" },
+      { name: "OTB Ventures", url: "https://otbventures.com" },
+      { name: "Type One", url: "https://typeoneventures.com" },
+    ],
     comp: "Founding equity · ramen for a bit",
     for: "anyone with an itch",
-    note: "You saw the gap. You know what customers couldn't get. That gap might be a company. Use the AI prompts to pressure-test the thesis before you commit.",
+    note: "You saw the gap. You know what customers couldn't get. That gap might be a company. Use the AI prompts to pressure-test the thesis before you commit. The VCs above know the space sector.",
     color: "var(--warn)",
   },
   {
     id: "institutional",
+    icon: "📡",
     label: "Go deep, not fast",
     tag: "Agencies · research · higher ed",
-    where: "ESA · CNES · DLR · ASI · ISU · national agencies",
+    companies: [
+      { name: "ESA", url: "https://jobs.esa.int" },
+      { name: "CNES", url: "https://cnes.fr/en/join-cnes" },
+      { name: "DLR", url: "https://www.dlr.de/en/career" },
+      { name: "ASI", url: "https://www.asi.it" },
+      { name: "ISU", url: "https://www.isunet.edu/jobs" },
+    ],
     comp: "€45K–€110K",
     for: "domain experts · PMs · Marketing",
     note: "Four ex-Leanspacers are already at ISU alone. Institutional cycles are long and the pay is modest — but the work is meaningful and the job doesn't vanish in the next downturn.",
@@ -119,8 +161,9 @@ export default function ReorientPage() {
           <div>
             <h2 className="text-xl font-semibold mb-3">The post-startup chapter. Nobody talks about this.</h2>
             <p className="text-[color:var(--fg-soft)] text-sm leading-relaxed mb-4">
-              Post-startup transitions have a distinct emotional shape. The badge is gone. The daily structure is gone.
-              The team is scattered. Even if you wanted to leave, that&apos;s disorienting.
+              Post-startup transitions have a distinct emotional shape. You&apos;re left with a branded hoodie and some
+              emotional whiplash. The daily structure is gone. The team is scattered. Even if you wanted to leave,
+              that&apos;s disorienting.
             </p>
             <p className="text-[color:var(--fg-soft)] text-sm leading-relaxed mb-4">
               Most people rush through this phase and land somewhere that replicates what they just left —
@@ -166,12 +209,26 @@ export default function ReorientPage() {
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
           {destinations.map((d) => (
-            <div key={d.id} className="neu p-5" style={{ borderLeft: `2px solid ${d.color}` }}>
-              <div className="mono text-[10px] uppercase tracking-widest mb-1" style={{ color: d.color }}>{d.tag}</div>
-              <h3 className="font-semibold mb-2">{d.label}</h3>
-              <p className="text-xs text-[color:var(--fg-mute)] mono mb-3 leading-relaxed">{d.where}</p>
-              <p className="text-sm text-[color:var(--fg-soft)] leading-relaxed mb-3">{d.note}</p>
-              <div className="text-xs">
+            <div key={d.id} className="neu p-5 flex flex-col" style={{ borderLeft: `3px solid ${d.color}` }}>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xl">{d.icon}</span>
+                <h3 className="font-semibold">{d.label}</h3>
+              </div>
+              <div className="mono text-[10px] uppercase tracking-widest mb-3" style={{ color: d.color }}>{d.tag}</div>
+              {d.companies.length > 0 ? (
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  {d.companies.map((c) => (
+                    <a key={c.name} href={c.url} target="_blank" rel="noopener noreferrer"
+                      className="mono text-[10px] px-2 py-0.5 rounded-full border border-[color:var(--panel-border)] text-[color:var(--fg-mute)] hover:text-[color:var(--fg)] hover:border-current transition"
+                      style={{ borderColor: undefined }}
+                    >{c.name} ↗</a>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-xs text-[color:var(--fg-mute)] mono mb-3">Any sector — the playbook transfers.</p>
+              )}
+              <p className="text-sm text-[color:var(--fg-soft)] leading-relaxed mb-3 flex-1">{d.note}</p>
+              <div className="text-xs pt-2 border-t border-[color:var(--panel-border)]">
                 <span className="font-medium text-[color:var(--fg)]">{d.comp}</span>
                 <span className="text-[color:var(--fg-mute)] ml-2">· {d.for}</span>
               </div>

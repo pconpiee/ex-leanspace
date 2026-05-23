@@ -406,7 +406,7 @@ export default function PathwaysPage() {
                 <ul className="space-y-1 text-xs text-[color:var(--fg-soft)]">
                   {[
                     "LinkedIn Jobs (filtered by company stage, not just keyword)",
-                    "SpaceJobs.global — space-specific board",
+                    "spacecrew.com — space-specific board",
                     "Wellfound / AngelList — startup-focused",
                     "Company career pages directly (most aren't on job boards)",
                     "Conference programmes — if you're presenting, you're meeting hiring managers",

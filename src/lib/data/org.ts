@@ -24,11 +24,6 @@ export const leadership: Person[] = [
     publicLinks: ["https://www.linkedin.com/in/guillaume-tanier/", "https://www.spacesymposium.org/speaker/guillaume-tanier/"],
   },
   {
-    name: "Alban de la Bretèche",
-    role: "Co-founder",
-    team: "Executive",
-  },
-  {
     name: "Alvaro Alonso Ruiz",
     role: "Chief Commercial Officer",
     team: "Commercial",
@@ -56,7 +51,7 @@ export const teams: Team[] = [
     id: "commercial",
     label: "Commercial",
     description:
-      "Owns pipeline, partnerships, capture, and the institutional voice in-market. The user's BDM role was here.",
+      "Owns pipeline, partnerships, capture, and the institutional voice in-market.",
     members: [
       { name: "Alvaro Alonso Ruiz", role: "Chief Commercial Officer", team: "Commercial" },
       { name: "Peter Healy", role: "Business Development Manager — US Operations", team: "Commercial" },

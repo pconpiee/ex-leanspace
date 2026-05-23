@@ -1,67 +1,27 @@
-import { Container, PageHeader, Section } from "@/components/section";
-import { leadership, teams, companyFacts } from "@/lib/data/org";
+import { PageHeader, Section } from "@/components/section";
+import { leadership, teams } from "@/lib/data/org";
 
 export const metadata = {
-  title: "The Leanspace org — ex-Leanspace",
-  description: "An organisational map of Leanspace (Strasbourg + Denver) from May 2026, drawn from public information and alumni-shared role descriptions.",
+  title: "People at Leanspace — ex-Leanspace",
+  description: "Who's still at Leanspace — useful for reference checks and outreach. Drawn from public LinkedIn profiles.",
 };
 
 export default function OrgPage() {
   return (
     <>
       <PageHeader
-        kicker="the org"
-        title="Leanspace, from inside."
+        kicker="contacts"
+        title="Who's still at Leanspace."
         lede={
           <>
-            An organisational map of Leanspace from May 2026 — drawn from public information
-            and alumni-shared role descriptions. Useful for outreach, reference checks, and
-            seeing who else worked the same problems as you. Public-info only.
+            Useful for reference checks and outreach. Names drawn from public LinkedIn profiles —
+            treat this as a snapshot, not a live org chart. Roles move fast at scale-up stage.
           </>
         }
       />
 
-      <Section kicker="company facts">
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="panel p-6">
-            <div className="kicker mb-3">at a glance</div>
-            <ul className="text-sm space-y-2.5">
-              <Row label="Founded" value={companyFacts.founded} />
-              <Row label="HQ" value={companyFacts.hq} />
-              <Row label="US office" value={companyFacts.usOffice} />
-              <Row label="Headcount" value={companyFacts.headcount} />
-            </ul>
-          </div>
-          <div className="panel p-6">
-            <div className="kicker mb-3">funding</div>
-            <ul className="text-sm space-y-3">
-              {companyFacts.rounds.map((r) => (
-                <li key={r.label}>
-                  <div className="flex justify-between font-medium"><span>{r.label}</span><span>{r.amount} · {r.year}</span></div>
-                  <div className="mono text-xs text-[color:var(--fg-mute)] mt-1">{r.investors.join(" · ")}</div>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
 
-        <div className="grid md:grid-cols-2 gap-6 mt-6">
-          <div className="panel p-6">
-            <div className="kicker mb-3">known customers</div>
-            <ul className="text-sm text-[color:var(--fg-soft)] space-y-1.5">
-              {companyFacts.customers.map((c) => <li key={c}>· {c}</li>)}
-            </ul>
-          </div>
-          <div className="panel p-6">
-            <div className="kicker mb-3">where the founders came from</div>
-            <ul className="text-sm text-[color:var(--fg-soft)] space-y-1.5">
-              {companyFacts.founderBackgrounds.map((b) => <li key={b}>· {b}</li>)}
-            </ul>
-          </div>
-        </div>
-      </Section>
-
-      <Section kicker="leadership" title="The C-suite and founders.">
+      <Section kicker="leadership" title="Founders & C-suite.">
         <div className="grid md:grid-cols-3 gap-5">
           {leadership.map((p) => (
             <article key={p.name} className="panel p-5">
@@ -117,14 +77,5 @@ export default function OrgPage() {
         </div>
       </Section>
     </>
-  );
-}
-
-function Row({ label, value }: { label: string; value: string }) {
-  return (
-    <li className="flex justify-between gap-4 border-b hairline pb-2 last:border-0">
-      <span className="text-[color:var(--fg-mute)]">{label}</span>
-      <span className="text-right">{value}</span>
-    </li>
   );
 }

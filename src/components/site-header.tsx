@@ -5,14 +5,11 @@ import Link from "next/link";
 
 const nav = [
   { href: "/directory", label: "Directory" },
+  { href: "/recommendations", label: "References" },
   { href: "/pathways", label: "Pathways" },
-  { href: "/destinations", label: "Destinations" },
-  { href: "/recommendations", label: "Recommendations" },
-  { href: "/skills", label: "AI Skills" },
+  { href: "/skills", label: "AI Prompts" },
   { href: "/networking", label: "Networking" },
-  { href: "/leadership", label: "Leadership" },
-  { href: "/org", label: "The Org" },
-  { href: "/resources", label: "Resources" },
+  { href: "/org", label: "Contacts" },
 ];
 
 export function SiteHeader() {
@@ -41,7 +38,7 @@ export function SiteHeader() {
         </nav>
         <div className="flex items-center gap-2">
           <Link href="/directory" className="hidden md:inline-flex btn btn-primary text-xs">
-            Directory →
+            Find alumni →
           </Link>
           <button
             className="md:hidden flex flex-col justify-center items-center w-9 h-9 gap-1.5 rounded-md hover:bg-[color:var(--panel)] transition"

@@ -69,7 +69,7 @@ function AlumnusCard({ person }: { person: (typeof alumni)[number] }) {
             href={person.linkedIn}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn text-xs"
+            className="mono text-xs text-[color:var(--accent)] hover:underline"
           >
             LinkedIn ↗
           </a>
@@ -111,7 +111,7 @@ function FilterBtn({
   return (
     <button
       onClick={onClick}
-      className={`px-3 py-1.5 rounded-md text-sm transition flex items-center gap-1.5 ${
+      className={`flex-none px-3 py-1.5 rounded-md text-sm transition flex items-center gap-1.5 ${
         active
           ? "bg-[color:var(--accent)] text-[color:var(--bg)] font-medium"
           : "text-[color:var(--fg-soft)] hover:text-[color:var(--fg)] hover:bg-[color:var(--panel)]"
@@ -212,8 +212,9 @@ export default function DirectoryPage() {
       {/* Filter + grid */}
       <div className="border-t hairline">
         <Container className="py-8 md:py-10">
-          {/* Filter bar */}
-          <div className="flex flex-wrap gap-1 mb-8">
+          {/* Filter bar — scrollable on mobile */}
+          <div className="-mx-5 px-5 overflow-x-auto pb-1 mb-8">
+            <div className="flex gap-1.5 w-max">
             {filterOptions.map((opt) => (
               <FilterBtn
                 key={opt.value}
@@ -227,9 +228,8 @@ export default function DirectoryPage() {
                 onClick={() => setActiveFilter(opt.value)}
               />
             ))}
+            </div>
           </div>
-
-          {/* Cards */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {filtered.map((person) => (
               <AlumnusCard key={person.name} person={person} />

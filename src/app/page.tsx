@@ -14,7 +14,7 @@ export default function Home() {
             <span className="text-[color:var(--accent)]">is your unfair advantage.</span>
           </h1>
           <p className="lede mt-6 max-w-lg">
-            20 people who know what you built there — and will tell hiring managers.
+            20 people you can reach out to today. They know exactly what you built there — and can tell hiring managers.
           </p>
           <div className="mt-8 flex flex-wrap gap-x-8 gap-y-2 items-baseline">
             <Stat n="20" label="alumni" />
@@ -22,8 +22,9 @@ export default function Home() {
             <Stat n="20+" label="AI prompts" />
             <span className="mono text-xs text-[color:var(--accent)]">free · no signup</span>
           </div>
-          <div className="mt-8">
-            <Link href="#paths" className="btn btn-primary">Where should I start? →</Link>
+          <div className="mt-8 flex flex-col sm:flex-row gap-3">
+            <Link href="/directory" className="btn btn-primary">Browse the directory →</Link>
+            <Link href="#paths" className="btn">Not sure where to start?</Link>
           </div>
         </Container>
       </section>
@@ -61,6 +62,7 @@ export default function Home() {
           <NavCard href="/recommendations" title="Recommendation templates" desc="How to ask for a LinkedIn rec, how to write one, and a ready-to-paste AI prompt." />
           <NavCard href="/pathways" title="Career pathways" desc="By function — PM, SA, BDM, Engineer. Where Leanspace experience translates." />
           <NavCard href="/skills" title="AI prompts" desc="Copy-paste prompts for cover letters, interviews, salary negotiation, and profile rewrites." />
+          <NavCard href="/networking" title="Networking guide" desc="Four outreach protocols, every relevant conference, and the communities worth joining." />
         </div>
       </Section>
     </>

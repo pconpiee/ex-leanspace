@@ -8,11 +8,11 @@ export const metadata = {
 };
 
 const sections = [
-  { label: "Job search & CV", filter: (p: typeof prompts[number]) => p.audience.includes("CV editing") || p.audience.includes("job search") },
-  { label: "Interview prep", filter: (p: typeof prompts[number]) => p.audience.includes("interview prep") },
-  { label: "Networking & negotiation", filter: (p: typeof prompts[number]) => p.audience.includes("networking") || p.audience.includes("offer stage") },
-  { label: "Founder & leadership", filter: (p: typeof prompts[number]) => p.audience.includes("founder route") || p.audience.includes("leadership") },
-  { label: "Claude skills (~/.claude/skills/)", filter: (p: typeof prompts[number]) => p.audience.includes("Claude skill") },
+  { id: "cv", label: "Job search & CV", filter: (p: typeof prompts[number]) => p.audience.includes("CV editing") || p.audience.includes("job search") },
+  { id: "interview", label: "Interview prep", filter: (p: typeof prompts[number]) => p.audience.includes("interview prep") },
+  { id: "networking", label: "Networking & negotiation", filter: (p: typeof prompts[number]) => p.audience.includes("networking") || p.audience.includes("offer stage") },
+  { id: "founder", label: "Founder & leadership", filter: (p: typeof prompts[number]) => p.audience.includes("founder route") || p.audience.includes("leadership") },
+  { id: "claude-skills", label: "Claude skills", filter: (p: typeof prompts[number]) => p.audience.includes("Claude skill") },
 ];
 
 export default function SkillsPage() {
@@ -20,21 +20,38 @@ export default function SkillsPage() {
     <>
       <PageHeader
         kicker="ai skills & prompts"
-        title="Copy-paste prompts and Claude skills, tuned to what you already know."
+        title="10 prompts. Already loaded with your Leanspace context."
         lede={
           <>
-            Ten prompts and three Claude skills. Each one assumes you have Leanspace context
-            and skips the obvious. Paste into Claude.ai, Claude Desktop, or save the skills
-            to <code className="mono text-[color:var(--fg)]">~/.claude/skills/</code>.
+            Each one skips the generic setup — they already know your reporting chain, products, and customer types.
+            Paste into Claude.ai or save as a skill to <code className="mono text-[color:var(--fg)]">~/.claude/skills/</code>.
           </>
         }
       />
+
+      {/* Jump-to bar */}
+      <div className="border-b hairline bg-[color:var(--bg-soft)]">
+        <Container className="py-3">
+          <div className="-mx-1 flex flex-wrap gap-1 items-center">
+            <span className="mono text-[10px] text-[color:var(--fg-mute)] uppercase tracking-widest mr-2 px-1">Jump to</span>
+            {sections.map((s) => (
+              <a
+                key={s.id}
+                href={`#${s.id}`}
+                className="px-3 py-1 rounded-md mono text-xs text-[color:var(--fg-soft)] hover:text-[color:var(--fg)] hover:bg-[color:var(--panel)] transition"
+              >
+                {s.label}
+              </a>
+            ))}
+          </div>
+        </Container>
+      </div>
 
       {sections.map((s) => {
         const matches = prompts.filter(s.filter);
         if (matches.length === 0) return null;
         return (
-          <Section key={s.label} kicker={s.label} className="border-t hairline">
+          <Section key={s.label} id={s.id} kicker={s.label} className="border-t hairline">
             <div className="space-y-6">
               {matches.map((p) => (
                 <article key={p.id} className="panel p-6">

@@ -36,7 +36,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t hairline">
         <div className="mx-auto max-w-6xl px-5 py-5 flex flex-wrap items-center justify-between gap-3 mono text-xs text-[color:var(--fg-mute)]">
-          <span>Last updated May 2026 · v0.1</span>
+          <span>Last updated May 2026</span>
           <span>Made for alumni of a small Strasbourg space-software company.</span>
         </div>
       </div>

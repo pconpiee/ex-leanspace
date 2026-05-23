@@ -174,7 +174,7 @@ export default function DirectoryPage() {
       <PageHeader
         kicker="Alumni directory"
         title="Who we are now"
-        lede="Where 19 (known) Leanspacers landed after the ride. A living record of the people who built something real together."
+        lede={`Where ${alumni.length} (known) Leanspacers landed after the ride. A living record of the people who built something real together.`}
       />
 
       {/* Stats + clusters */}
@@ -187,12 +187,10 @@ export default function DirectoryPage() {
             <p className="text-sm text-[color:var(--fg-soft)] mt-4 max-w-sm">
               Data from LinkedIn, May 2026. Know someone missing?{" "}
               <a
-                href="https://github.com/pconpiee/ex-leanspace/issues"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:hello@ex-leanspace.vercel.app?subject=Directory%20correction"
                 className="text-[color:var(--accent)] hover:underline"
               >
-                Open a PR ↗
+                Email us ↗
               </a>
             </p>
           </div>

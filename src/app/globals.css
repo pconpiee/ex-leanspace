@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #07090f;
+  --bg-soft: #0d1119;
+  --panel: #11151e;
+  --panel-border: #1f2533;
+  --fg: #e7ecf3;
+  --fg-soft: #a4adbd;
+  --fg-mute: #6c7383;
+  --accent: #6ad0ff;
+  --accent-soft: #2a4d63;
+  --warm: #f0b86e;
+  --good: #7ed4a8;
+  --warn: #ff8a7a;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-panel: var(--panel);
+  --color-panel-border: var(--panel-border);
+  --color-fg: var(--fg);
+  --color-fg-soft: var(--fg-soft);
+  --color-fg-mute: var(--fg-mute);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-warm: var(--warm);
+  --color-good: var(--good);
+  --color-warn: var(--warn);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains);
+  --font-display: var(--font-fraunces);
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+}
+
+body {
+  background-image:
+    radial-gradient(ellipse 70% 50% at 50% -10%, rgba(106, 208, 255, 0.10), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 90% 0%, rgba(240, 184, 110, 0.06), transparent 60%);
+  background-attachment: fixed;
+}
+
+::selection { background: rgba(106, 208, 255, 0.25); color: var(--fg); }
+
+h1, h2, h3, h4 { font-family: var(--font-display), serif; letter-spacing: -0.01em; }
+
+a { color: inherit; text-decoration: none; }
+a.link { color: var(--accent); text-decoration: underline; text-decoration-color: rgba(106, 208, 255, 0.4); text-underline-offset: 3px; }
+a.link:hover { text-decoration-color: var(--accent); }
+
+.mono { font-family: var(--font-mono), ui-monospace, monospace; }
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+}
+
+.kicker {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  color: var(--fg-mute);
+}
+
+.dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  vertical-align: middle;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--panel-border), transparent);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 14px;
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
+  transition: 120ms ease;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn-primary {
+  background: var(--accent);
+  color: #061018;
+  border-color: var(--accent);
+}
+.btn-primary:hover { background: #8edcff; border-color: #8edcff; color: #061018; }
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(106, 208, 255, 0.08);
+  color: var(--accent);
+  border: 1px solid rgba(106, 208, 255, 0.2);
+}
+
+.tag-warm { background: rgba(240, 184, 110, 0.08); color: var(--warm); border-color: rgba(240, 184, 110, 0.2); }
+.tag-good { background: rgba(126, 212, 168, 0.08); color: var(--good); border-color: rgba(126, 212, 168, 0.2); }
+.tag-mute { background: rgba(255,255,255,0.04); color: var(--fg-mute); border-color: rgba(255,255,255,0.08); }
+
+pre, code { font-family: var(--font-mono), ui-monospace, monospace; }
+pre {
+  background: #050810;
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 13px;
+  line-height: 1.55;
+  overflow-x: auto;
+  color: #cbd5e1;
+}
+
+.prose-narrow { max-width: 65ch; }
+.lede { font-size: 1.05rem; color: var(--fg-soft); line-height: 1.6; }
+
+.hairline { border-color: var(--panel-border); }

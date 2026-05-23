@@ -20,7 +20,7 @@ export function SiteFooter() {
             <li><Link href="/skills">AI skills & prompts</Link></li>
             <li><Link href="/networking">Networking</Link></li>
             <li><Link href="/leadership">Leadership</Link></li>
-            <li><Link href="/org">The org map</Link></li>
+            <li><Link href="/org">The work we did</Link></li>
           </ul>
         </div>
         <div>

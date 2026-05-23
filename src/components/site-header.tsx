@@ -10,7 +10,7 @@ const nav = [
   { href: "/pathways", label: "Pathways" },
   { href: "/skills", label: "AI Prompts" },
   { href: "/networking", label: "Networking" },
-  { href: "/org", label: "Org map" },
+  { href: "/org", label: "The work" },
 ];
 
 export function SiteHeader() {

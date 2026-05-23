@@ -134,9 +134,48 @@ export default function Home() {
         </div>
       </Section>
 
+      {/* Community teaser */}
+      <Section kicker="community" title="Who we are now">
+        <div className="grid md:grid-cols-2 gap-6 items-start">
+          <div className="prose-narrow text-[color:var(--fg-soft)] text-[15px] leading-7 space-y-4">
+            <p>
+              19 named alumni, across six functions, spread from Strasbourg to Pittsburgh to Vilnius.
+              Product managers, engineers, marketers, ops leads — all carrying the same unusual signal.
+            </p>
+            <p>
+              Two clusters have formed already: four Leanspacers now at ISU, two at Constellr.
+              The network is denser than it looks.
+            </p>
+            <p>
+              Browse the directory to see where people landed, then use the recommendations templates
+              to activate the alumni network before you apply anywhere.
+            </p>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Link href="/directory" className="btn btn-primary">Browse the directory →</Link>
+              <Link href="/recommendations" className="btn">Recommendation templates</Link>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { label: "Landed roles", value: "12", color: "var(--good)" },
+              { label: "Freelancing", value: "4", color: "var(--warm)" },
+              { label: "Countries", value: "7+", color: "var(--accent)" },
+              { label: "Alumni tracked", value: "19", color: "var(--fg)" },
+            ].map((stat) => (
+              <div key={stat.label} className="panel p-5">
+                <div className="mono text-3xl font-bold" style={{ color: stat.color }}>{stat.value}</div>
+                <div className="text-xs text-[color:var(--fg-mute)] mt-1">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
+
       {/* Quick links */}
       <Section kicker="explore" title="Where to go from here">
         <div className="grid md:grid-cols-3 gap-5">
+          <NavCard href="/directory" title="Alumni directory" desc="19 known Leanspacers — where they are, what they do now, and how to reach them." />
+          <NavCard href="/recommendations" title="Recommendations" desc="How to ask for a LinkedIn rec, how to write one, and a ready-to-paste AI prompt." />
           <NavCard href="/pathways" title="Pathways" desc="By function — PM, SA, BDM, Eng, Domain, GTM, Ops, Exec." />
           <NavCard href="/destinations" title="Destinations" desc="By sector — primes, NewSpace, government, defense-tech, founder, investor, academia." />
           <NavCard href="/skills" title="AI Skills & Prompts" desc="Copy-paste Claude prompts and three Claude skills to drop in ~/.claude/skills/." />

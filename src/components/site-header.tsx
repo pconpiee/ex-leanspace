@@ -1,8 +1,10 @@
 import Link from "next/link";
 
 const nav = [
+  { href: "/directory", label: "Directory" },
   { href: "/pathways", label: "Pathways" },
   { href: "/destinations", label: "Destinations" },
+  { href: "/recommendations", label: "Recommendations" },
   { href: "/skills", label: "AI Skills" },
   { href: "/networking", label: "Networking" },
   { href: "/leadership", label: "Leadership" },

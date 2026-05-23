@@ -14,6 +14,8 @@ export function SiteFooter() {
         <div>
           <div className="kicker mb-2">Site</div>
           <ul className="space-y-1.5 text-[color:var(--fg-soft)]">
+            <li><Link href="/directory">Alumni directory</Link></li>
+            <li><Link href="/recommendations">Recommendations</Link></li>
             <li><Link href="/pathways">Career pathways</Link></li>
             <li><Link href="/skills">AI skills & prompts</Link></li>
             <li><Link href="/networking">Networking</Link></li>

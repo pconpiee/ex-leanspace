@@ -22,6 +22,7 @@ export const alumni: Alumnus[] = [
   // ── Product ─────────────────────────────────────────────────────────────────
   {
     name: "Patrick Connolly",
+    linkedIn: "https://www.linkedin.com/in/j-patrick-connolly/",
     leanspaceRole: "PM / Solutions Architect / BDM",
     domain: "Product",
     tenure: "2022–2025",

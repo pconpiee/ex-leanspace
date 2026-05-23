@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PageHeader, Section } from "@/components/section";
 import { CopyButton } from "@/components/copy-button";
+import { alumni } from "@/lib/data/alumni";
 
 const ASK_TEMPLATE = `Hi [Name],
 
@@ -51,7 +52,71 @@ Guidelines:
 - End with a specific close about who would benefit
   from working with them`;
 
-// ── Copy block component ──────────────────────────────────────────────────────
+// ── LinkedIn Action Hub ───────────────────────────────────────────────────────
+function LinkedInActionHub() {
+  const withLinkedIn = alumni.filter((a) => a.linkedIn);
+
+  function giveUrl(a: { name: string }) {
+    const encoded = encodeURIComponent(a.name);
+    return `https://www.linkedin.com/recs/give/?displayName=${encoded}`;
+  }
+  function requestUrl(a: { name: string }) {
+    const encoded = encodeURIComponent(a.name);
+    return `https://www.linkedin.com/recs/request/?displayName=${encoded}`;
+  }
+
+  return (
+    <Section kicker="do it now" title="Give first. Ask second.">
+      <div className="panel p-5 md:p-6 mb-6 border-l-2 border-[color:var(--accent)]">
+        <p className="text-sm text-[color:var(--fg-soft)] leading-relaxed">
+          Networking research is pretty clear on this: <strong className="text-[color:var(--fg)]">reciprocity before the ask.</strong>{" "}
+          Give a former colleague a recommendation first — it takes 10 minutes and they{"'"}ll remember it.
+          Then request one. The conversion rate is dramatically higher and you{"'"}ll feel better about it.
+          Two tabs per person below: give first, then request.
+        </p>
+      </div>
+
+      <div className="grid gap-3">
+        {withLinkedIn.map((a) => (
+          <div
+            key={a.name}
+            className="panel p-4 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5"
+          >
+            <div className="flex-1 min-w-0">
+              <div className="font-medium text-[color:var(--fg)] leading-tight">{a.name}</div>
+              <div className="text-xs text-[color:var(--fg-mute)] mt-0.5 truncate">{a.leanspaceRole}</div>
+            </div>
+            <div className="flex gap-2 flex-shrink-0 flex-wrap">
+              <a
+                href={giveUrl(a)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary text-xs px-3 py-1.5"
+              >
+                1 · Give {a.name.split(" ")[0]} a rec ↗
+              </a>
+              <a
+                href={requestUrl(a)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn text-xs px-3 py-1.5"
+              >
+                2 · Request from {a.name.split(" ")[0]} ↗
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p className="text-xs text-[color:var(--fg-mute)] mt-4 leading-relaxed">
+        Both links open LinkedIn and pre-fill the person{"'"}s name. If you{"'"}re not logged in, LinkedIn will ask you to sign in first and then redirect.
+        The &quot;give&quot; link opens the recommendation writer; the &quot;request&quot; link opens the request modal.
+      </p>
+    </Section>
+  );
+}
+
+
 function CopyBlock({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="panel p-5 md:p-6">
@@ -85,6 +150,8 @@ export default function RecommendationsPage() {
         title="Ask. Give. Amplify."
         lede="A LinkedIn recommendation from a former Leanspace colleague is worth more than you think. Here's how to ask, how to write one, and a ready-to-use AI prompt."
       />
+
+      <LinkedInActionHub />
 
       {/* Why it matters */}
       <Section kicker="Why bother">

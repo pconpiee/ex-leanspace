@@ -184,15 +184,6 @@ export default function DirectoryPage() {
           <div>
             <div className="kicker mb-4">At a glance</div>
             <StatsBar />
-            <p className="text-sm text-[color:var(--fg-soft)] mt-4 max-w-sm">
-              Data from LinkedIn, May 2026. Know someone missing?{" "}
-              <a
-                href="mailto:hello@ex-leanspace.vercel.app?subject=Directory%20correction"
-                className="text-[color:var(--accent)] hover:underline"
-              >
-                Email us ↗
-              </a>
-            </p>
           </div>
 
           {/* Clusters */}
@@ -204,6 +195,44 @@ export default function DirectoryPage() {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Contribution CTA */}
+        <div className="neu p-5 md:p-6 mt-8">
+          <div className="kicker mb-2">contribute</div>
+          <p className="text-sm text-[color:var(--fg-soft)] leading-relaxed mb-4">
+            Know someone missing? Found a job opening? Want to add a partner company or just share something useful?
+            Hit the relevant link — it opens a pre-filled email.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            <a
+              href={`mailto:hello@ex-leanspace.vercel.app?subject=New%20alumni%20suggestion&body=Name%3A%0ALinkedIn%3A%0ARole%20at%20Leanspace%3A%0ATenure%3A%0ACurrently%3A%0A`}
+              className="btn text-xs px-3 py-1.5"
+            >
+              + Add a person
+            </a>
+            <a
+              href={`mailto:hello@ex-leanspace.vercel.app?subject=Job%20opening&body=Company%3A%0ARole%3A%0ALink%3A%0AWhy%20relevant%20for%20ex-Leanspacers%3A%0A`}
+              className="btn text-xs px-3 py-1.5"
+            >
+              + Post a job
+            </a>
+            <a
+              href={`mailto:hello@ex-leanspace.vercel.app?subject=Partner%20company&body=Company%3A%0AWhat%20they%20do%3A%0AWhy%20relevant%3A%0AContact%20there%3A%0A`}
+              className="btn text-xs px-3 py-1.5"
+            >
+              + Add a partner
+            </a>
+            <a
+              href={`mailto:hello@ex-leanspace.vercel.app?subject=General%20contribution&body=`}
+              className="btn text-xs px-3 py-1.5"
+            >
+              + Something else
+            </a>
+          </div>
+          <p className="text-xs text-[color:var(--fg-mute)] mt-3">
+            Data from LinkedIn, May 2026. All submissions are reviewed before going live.
+          </p>
         </div>
       </Section>
 

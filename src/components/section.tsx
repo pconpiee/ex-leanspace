@@ -29,14 +29,16 @@ export function Section({
   kicker,
   children,
   className = "",
+  id,
 }: {
   title?: string;
   kicker?: string;
   children: ReactNode;
   className?: string;
+  id?: string;
 }) {
   return (
-    <section className={`py-12 md:py-16 ${className}`}>
+    <section id={id} className={`py-12 md:py-16 ${className}`}>
       <Container>
         {kicker && <div className="kicker mb-3">{kicker}</div>}
         {title && <h2 className="text-2xl md:text-3xl font-medium mb-6">{title}</h2>}

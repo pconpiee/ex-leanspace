@@ -16,9 +16,10 @@ Unofficial. Not affiliated with Leanspace SAS. Built by an alum, for alumni.
 
 ## Stack
 
-- Next.js 16, React 19, TypeScript
+- Next.js 15, React 19, TypeScript
 - Tailwind CSS v4 (no config file — `@theme` in `globals.css`)
-- Static-rendered (no DB, no auth, no signup)
+- Public site: static-rendered (no DB, no auth)
+- Career app (`/app/*`): Supabase (Postgres + Auth + Storage) + Anthropic SDK
 - Fonts: Inter, JetBrains Mono, Fraunces (Google Fonts via `next/font`)
 
 ## Local development
@@ -31,7 +32,24 @@ npm run dev
 
 ## Deploy
 
-Set up on Vercel: import the repo, no env vars required. Production branch is `main`; preview branches deploy automatically.
+Public pages build with no env vars set. The `/app` career-tracker section needs Supabase + Anthropic configured to function.
+
+### Required env vars for `/app`
+
+| Var | How to get it |
+|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project settings → API → Project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase project settings → API → `anon` public key |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase project settings → API → `service_role` key (server-only) |
+| `ANTHROPIC_API_KEY` | console.anthropic.com → API Keys |
+| `ALLOWED_EMAILS` | Comma-separated list of Google emails permitted to use `/app` |
+
+### Supabase one-time setup
+
+1. Run `supabase/schema.sql` (alumni/jobs tables).
+2. Run `supabase/career-app.sql` (CVs, applications, messages, storage bucket policy).
+3. In **Authentication → Providers**, enable **Google** and paste your OAuth client ID/secret.
+4. In Google Cloud Console, register the redirect URI Supabase shows you, plus `https://<your-domain>/auth/callback`.
 
 ## Editing content
 

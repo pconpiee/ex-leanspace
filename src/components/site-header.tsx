@@ -9,6 +9,7 @@ const nav = [
   { href: "/objectives", label: "O — Objectives" },
   { href: "/wrestle", label: "W — Wrestle" },
   { href: "/directory", label: "People" },
+  { href: "/app", label: "App" },
 ];
 
 export function SiteHeader() {

@@ -26,9 +26,9 @@ export function SiteFooter() {
           <ul className="space-y-1.5 text-[color:var(--fg-soft)]">
             <li><a className="hover:text-[color:var(--fg)]" href="https://leanspace.io" target="_blank" rel="noopener">leanspace.io ↗</a></li>
             <li><a className="hover:text-[color:var(--fg)]" href="https://pconpiee.github.io/cv-guide/" target="_blank" rel="noopener">CV Guide ↗</a></li>
-            <li><a className="hover:text-[color:var(--fg)]" href="https://pconpiee.github.io/bullet-builder/" target="_blank" rel="noopener">Bullet Builder ↗</a></li>
-            <li><a className="hover:text-[color:var(--fg)]" href="https://pconpiee.github.io/career-folder/" target="_blank" rel="noopener">Career Folder ↗</a></li>
+            <li><a className="hover:text-[color:var(--fg)]" href="https://resume-rockstar-kit.lovable.app/" target="_blank" rel="noopener">Resume Rockstar Kit ↗</a></li>
             <li><a className="hover:text-[color:var(--fg)]" href="https://blue-canopy.vercel.app" target="_blank" rel="noopener">Blue Canopy ↗</a></li>
+            <li><a className="hover:text-[color:var(--fg)]" href="https://pconpiee.github.io/" target="_blank" rel="noopener">All Patrick&apos;s tools ↗</a></li>
           </ul>
         </div>
       </div>

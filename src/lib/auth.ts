@@ -13,6 +13,9 @@ function allowedEmails(): Set<string> {
 
 export function isAllowed(email: string | null | undefined): boolean {
   const set = allowedEmails();
+  // Open mode: ALLOWED_EMAILS="*" lets any signed-in Google account in —
+  // each user still gets their own private, isolated workspace (RLS by email).
+  if (set.has("*")) return !!email;
   if (set.size === 0) return false;
   return !!email && set.has(email.toLowerCase());
 }

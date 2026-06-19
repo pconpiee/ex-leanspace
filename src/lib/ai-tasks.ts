@@ -1,9 +1,11 @@
 import type Anthropic from "@anthropic-ai/sdk";
 import {
   ADAPTIVE_THINKING,
-  MODEL,
+  MODEL_HAIKU,
+  MODEL_SONNET,
   requireAnthropic,
 } from "./anthropic";
+import { assertBudget, recordUsage } from "./usage";
 import type {
   CompanyResearch,
   FitAnalysis,
@@ -74,14 +76,17 @@ const CV_SCHEMA = {
   additionalProperties: false,
 } as const;
 
-export async function parseCV(rawText: string): Promise<ParsedCV> {
+export async function parseCV(
+  rawText: string,
+  userEmail: string,
+): Promise<ParsedCV> {
   const client = requireAnthropic();
+  await assertBudget(userEmail);
   const trimmed = rawText.slice(0, 80_000);
 
   const resp = await client.messages.create({
-    model: MODEL,
+    model: MODEL_HAIKU,
     max_tokens: 16000,
-    thinking: ADAPTIVE_THINKING,
     system: [
       {
         type: "text",
@@ -106,6 +111,7 @@ export async function parseCV(rawText: string): Promise<ParsedCV> {
       format: { type: "json_schema", schema: CV_SCHEMA },
     },
   });
+  await recordUsage(userEmail, MODEL_HAIKU, resp.usage);
 
   const text = textFromContent(resp.content);
   try {
@@ -140,12 +146,16 @@ export type JobMeta = {
   location?: string;
 };
 
-export async function extractJobMeta(blob: string): Promise<JobMeta> {
+export async function extractJobMeta(
+  blob: string,
+  userEmail: string,
+): Promise<JobMeta> {
   const client = requireAnthropic();
+  await assertBudget(userEmail);
   const trimmed = blob.slice(0, 30_000);
 
   const resp = await client.messages.create({
-    model: MODEL,
+    model: MODEL_HAIKU,
     max_tokens: 1024,
     system:
       "You extract job-posting metadata. If a field is genuinely unclear, " +
@@ -163,6 +173,7 @@ export async function extractJobMeta(blob: string): Promise<JobMeta> {
       format: { type: "json_schema", schema: JOB_META_SCHEMA },
     },
   });
+  await recordUsage(userEmail, MODEL_HAIKU, resp.usage);
 
   const text = textFromContent(resp.content);
   return JSON.parse(text) as JobMeta;
@@ -223,8 +234,10 @@ export async function analyzeFit(args: {
   cv: ParsedCV;
   rawCvText: string;
   jobDescription: string;
+  userEmail: string;
 }): Promise<FitAnalysis> {
   const client = requireAnthropic();
+  await assertBudget(args.userEmail);
 
   const cvBlock =
     "<candidate_cv>\n" +
@@ -237,7 +250,7 @@ export async function analyzeFit(args: {
     "<job_posting>\n" + args.jobDescription.slice(0, 30_000) + "\n</job_posting>";
 
   const resp = await client.messages.create({
-    model: MODEL,
+    model: MODEL_SONNET,
     max_tokens: 16000,
     thinking: ADAPTIVE_THINKING,
     system: [
@@ -279,6 +292,7 @@ export async function analyzeFit(args: {
       format: { type: "json_schema", schema: FIT_SCHEMA },
     },
   });
+  await recordUsage(args.userEmail, MODEL_SONNET, resp.usage);
 
   const text = textFromContent(resp.content);
   return JSON.parse(text) as FitAnalysis;
@@ -324,11 +338,13 @@ export async function researchCompany(args: {
   company: string;
   jobTitle: string;
   jobDescription: string;
+  userEmail: string;
 }): Promise<CompanyResearch> {
   const client = requireAnthropic();
+  await assertBudget(args.userEmail);
 
   const resp = await client.messages.create({
-    model: MODEL,
+    model: MODEL_SONNET,
     max_tokens: 16000,
     thinking: ADAPTIVE_THINKING,
     tools: [
@@ -354,6 +370,7 @@ export async function researchCompany(args: {
       format: { type: "json_schema", schema: RESEARCH_SCHEMA },
     },
   });
+  await recordUsage(args.userEmail, MODEL_SONNET, resp.usage);
 
   // When using server-side tools, the model loops; pause_turn means we need
   // to send the assistant turn back. For typical research it completes in
@@ -361,7 +378,7 @@ export async function researchCompany(args: {
   let final = resp;
   if (final.stop_reason === "pause_turn") {
     final = await client.messages.create({
-      model: MODEL,
+      model: MODEL_SONNET,
       max_tokens: 16000,
       thinking: ADAPTIVE_THINKING,
       tools: [
@@ -381,6 +398,7 @@ export async function researchCompany(args: {
         format: { type: "json_schema", schema: RESEARCH_SCHEMA },
       },
     });
+    await recordUsage(args.userEmail, MODEL_SONNET, final.usage);
   }
 
   return JSON.parse(textFromContent(final.content)) as CompanyResearch;
@@ -399,8 +417,10 @@ export async function improveFitTurn(args: {
   jobDescription: string;
   fitAnalysis: import("./db-types").FitAnalysis | null;
   history: ChatTurn[];
+  userEmail: string;
 }): Promise<string> {
   const client = requireAnthropic();
+  await assertBudget(args.userEmail);
 
   const cvBlock =
     "<candidate_cv>\n" +
@@ -445,12 +465,13 @@ export async function improveFitTurn(args: {
   }));
 
   const resp = await client.messages.create({
-    model: MODEL,
+    model: MODEL_SONNET,
     max_tokens: 4096,
     thinking: ADAPTIVE_THINKING,
     system: systemBlocks,
     messages,
   });
+  await recordUsage(args.userEmail, MODEL_SONNET, resp.usage);
 
   return textFromContent(resp.content);
 }

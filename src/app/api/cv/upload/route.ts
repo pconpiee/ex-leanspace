@@ -5,6 +5,7 @@ import { getUserOrNull } from "@/lib/auth";
 import { extractCVText } from "@/lib/cv-parse";
 import { parseCV } from "@/lib/ai-tasks";
 import { anthropicConfigured, ConfigMissingError } from "@/lib/anthropic";
+import { BudgetExceededError } from "@/lib/usage";
 
 export const runtime = "nodejs";
 export const maxDuration = 120;
@@ -98,9 +99,12 @@ export async function POST(request: Request) {
   let parseWarning: string | null = null;
   if (anthropicConfigured) {
     try {
-      parsedJson = await parseCV(extracted.text);
+      parsedJson = await parseCV(extracted.text, user.email);
     } catch (e) {
-      if (e instanceof ConfigMissingError) {
+      if (e instanceof BudgetExceededError) {
+        parseWarning =
+          "You've reached your $1 AI allowance — CV saved as raw text. Ask Patrick to raise your limit.";
+      } else if (e instanceof ConfigMissingError) {
         parseWarning = "Anthropic API key missing — saved raw text only.";
       } else {
         parseWarning =

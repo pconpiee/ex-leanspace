@@ -3,6 +3,7 @@ import { getUserOrNull } from "@/lib/auth";
 import { getServerSupabase } from "@/lib/supabase-server";
 import { researchCompany } from "@/lib/ai-tasks";
 import { anthropicConfigured, ConfigMissingError } from "@/lib/anthropic";
+import { BudgetExceededError } from "@/lib/usage";
 import type { ApplicationRow } from "@/lib/db-types";
 
 export const runtime = "nodejs";
@@ -42,6 +43,7 @@ export async function POST(
       company: application.company,
       jobTitle: application.job_title,
       jobDescription: application.job_description,
+      userEmail: user.email,
     });
     const { data, error: upErr } = await supabase
       .from("applications")
@@ -58,6 +60,16 @@ export async function POST(
     }
     return NextResponse.json({ application: data });
   } catch (e) {
+    if (e instanceof BudgetExceededError) {
+      return NextResponse.json(
+        {
+          error: "budget-exceeded",
+          message:
+            "You've used your $1 AI allowance for this tool. Ask Patrick to raise your limit.",
+        },
+        { status: 402 },
+      );
+    }
     if (e instanceof ConfigMissingError) {
       return NextResponse.json(
         { error: "anthropic-missing" },

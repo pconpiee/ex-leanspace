@@ -72,7 +72,7 @@ export async function POST(request: Request) {
 
   if (anthropicConfigured && (!title || !company)) {
     try {
-      const meta = await extractJobMeta(description);
+      const meta = await extractJobMeta(description, user.email);
       if (!title) title = meta.job_title;
       if (!company) company = meta.company;
       if (!location && meta.location) location = meta.location;

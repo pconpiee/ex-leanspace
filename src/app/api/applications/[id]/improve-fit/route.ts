@@ -4,6 +4,7 @@ import { getUserOrNull } from "@/lib/auth";
 import { getServerSupabase } from "@/lib/supabase-server";
 import { improveFitTurn, type ChatTurn } from "@/lib/ai-tasks";
 import { anthropicConfigured, ConfigMissingError } from "@/lib/anthropic";
+import { BudgetExceededError } from "@/lib/usage";
 import type {
   ApplicationMessageRow,
   ApplicationRow,
@@ -94,6 +95,7 @@ export async function POST(
       jobDescription: application.job_description,
       fitAnalysis: application.fit_analysis,
       history,
+      userEmail: user.email,
     });
 
     // Persist both turns.
@@ -112,6 +114,16 @@ export async function POST(
 
     return NextResponse.json({ reply });
   } catch (e) {
+    if (e instanceof BudgetExceededError) {
+      return NextResponse.json(
+        {
+          error: "budget-exceeded",
+          message:
+            "You've used your $1 AI allowance for this tool. Ask Patrick to raise your limit.",
+        },
+        { status: 402 },
+      );
+    }
     if (e instanceof ConfigMissingError) {
       return NextResponse.json(
         { error: "anthropic-missing" },

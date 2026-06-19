@@ -11,7 +11,7 @@ create table if not exists alumni (
   leanspace_role text not null,
   domain        text not null,  -- 'Product' | 'Engineering' | 'BD & Sales' | 'Solutions' | 'Marketing' | 'Ops & Leadership'
   tenure        text,
-  current_role  text,
+  "current_role"  text,
   current_company text,
   sector        text,
   location      text,
@@ -94,7 +94,7 @@ create policy "auth_update_own_jobs"
 -- SEED DATA  (run once — all existing static alumni)
 -- ============================================================
 
-insert into alumni (name, linkedin, leanspace_role, domain, tenure, current_role, current_company, sector, location, status) values
+insert into alumni (name, linkedin, leanspace_role, domain, tenure, "current_role", current_company, sector, location, status) values
   ('Patrick Connolly', 'https://www.linkedin.com/in/j-patrick-connolly/', 'PM / Solutions Architect / BDM', 'Product', '2022–2025', 'Director & Faculty', 'International Space University', 'Higher Ed / Space', 'Strasbourg, France', 'employed'),
   ('Kateryna Dvornichenko', 'https://linkedin.com/in/katerynadvornichenko', 'PM — Mission Planning & Flight Dynamics', 'Product', 'Jun 2022 – Oct 2025', 'Product Manager', 'Upsun (formerly Platform.sh)', 'Cloud PaaS', 'Paris, France', 'employed'),
   ('Stuart Gill', 'https://linkedin.com/in/stuartajgill', 'PM — MCS & AIT', 'Product', 'Jan 2021 – Dec 2024', 'Senior Product Manager', 'Constellr', 'Earth Observation / NewSpace', 'France', 'employed'),

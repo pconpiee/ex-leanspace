@@ -8,7 +8,7 @@ import { anthropicConfigured, ConfigMissingError } from "@/lib/anthropic";
 import { BudgetExceededError } from "@/lib/usage";
 
 export const runtime = "nodejs";
-export const maxDuration = 120;
+export const maxDuration = 60;
 
 export async function POST(request: Request) {
   const user = await getUserOrNull();

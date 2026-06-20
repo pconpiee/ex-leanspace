@@ -12,7 +12,7 @@ import type {
 } from "@/lib/db-types";
 
 export const runtime = "nodejs";
-export const maxDuration = 120;
+export const maxDuration = 60;
 
 const Body = z.object({ message: z.string().min(1) });
 

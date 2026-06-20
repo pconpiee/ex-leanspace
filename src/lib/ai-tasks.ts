@@ -84,7 +84,8 @@ export async function parseCV(
   await assertBudget(userEmail);
   const trimmed = rawText.slice(0, 80_000);
 
-  const resp = await client.messages.create({
+  const resp = await client.messages
+    .stream({
     model: MODEL_HAIKU,
     max_tokens: 16000,
     system: [
@@ -110,7 +111,8 @@ export async function parseCV(
     output_config: {
       format: { type: "json_schema", schema: CV_SCHEMA },
     },
-  });
+    })
+    .finalMessage();
   await recordUsage(userEmail, MODEL_HAIKU, resp.usage);
 
   const text = textFromContent(resp.content);
@@ -249,10 +251,14 @@ export async function analyzeFit(args: {
   const jobBlock =
     "<job_posting>\n" + args.jobDescription.slice(0, 30_000) + "\n</job_posting>";
 
-  const resp = await client.messages.create({
+  const resp = await client.messages
+    .stream({
     model: MODEL_SONNET,
-    max_tokens: 16000,
-    thinking: ADAPTIVE_THINKING,
+    max_tokens: 8000,
+    // Thinking disabled + low effort to stay under the serverless timeout.
+    // This is structured extraction against a fixed schema, so deep reasoning
+    // adds latency without much quality gain.
+    thinking: { type: "disabled" },
     system: [
       {
         type: "text",
@@ -289,9 +295,11 @@ export async function analyzeFit(args: {
       },
     ],
     output_config: {
+      effort: "low",
       format: { type: "json_schema", schema: FIT_SCHEMA },
     },
-  });
+    })
+    .finalMessage();
   await recordUsage(args.userEmail, MODEL_SONNET, resp.usage);
 
   const text = textFromContent(resp.content);
@@ -343,13 +351,17 @@ export async function researchCompany(args: {
   const client = requireAnthropic();
   await assertBudget(args.userEmail);
 
-  const resp = await client.messages.create({
+  const resp = await client.messages
+    .stream({
     model: MODEL_SONNET,
-    max_tokens: 16000,
-    thinking: ADAPTIVE_THINKING,
+    max_tokens: 8000,
+    // Thinking disabled + low effort + capped tool uses to stay under the
+    // serverless timeout. Each web_search/web_fetch round-trip adds latency,
+    // so max_uses bounds the worst case.
+    thinking: { type: "disabled" },
     tools: [
-      { type: "web_search_20260209", name: "web_search" },
-      { type: "web_fetch_20260209", name: "web_fetch" },
+      { type: "web_search_20260209", name: "web_search", max_uses: 3 },
+      { type: "web_fetch_20260209", name: "web_fetch", max_uses: 2 },
     ],
     system:
       "You research companies to help job candidates tailor their applications. " +
@@ -367,9 +379,11 @@ export async function researchCompany(args: {
       },
     ],
     output_config: {
+      effort: "low",
       format: { type: "json_schema", schema: RESEARCH_SCHEMA },
     },
-  });
+    })
+    .finalMessage();
   await recordUsage(args.userEmail, MODEL_SONNET, resp.usage);
 
   // When using server-side tools, the model loops; pause_turn means we need
@@ -377,13 +391,14 @@ export async function researchCompany(args: {
   // one pass. Handle pause_turn once defensively.
   let final = resp;
   if (final.stop_reason === "pause_turn") {
-    final = await client.messages.create({
+    final = await client.messages
+      .stream({
       model: MODEL_SONNET,
-      max_tokens: 16000,
-      thinking: ADAPTIVE_THINKING,
+      max_tokens: 8000,
+      thinking: { type: "disabled" },
       tools: [
-        { type: "web_search_20260209", name: "web_search" },
-        { type: "web_fetch_20260209", name: "web_fetch" },
+        { type: "web_search_20260209", name: "web_search", max_uses: 3 },
+        { type: "web_fetch_20260209", name: "web_fetch", max_uses: 2 },
       ],
       system:
         "You research companies to help job candidates tailor their applications.",
@@ -395,9 +410,11 @@ export async function researchCompany(args: {
         { role: "assistant", content: final.content },
       ],
       output_config: {
+        effort: "low",
         format: { type: "json_schema", schema: RESEARCH_SCHEMA },
       },
-    });
+      })
+      .finalMessage();
     await recordUsage(args.userEmail, MODEL_SONNET, final.usage);
   }
 

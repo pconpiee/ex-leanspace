@@ -7,7 +7,7 @@ import { BudgetExceededError } from "@/lib/usage";
 import type { ApplicationRow } from "@/lib/db-types";
 
 export const runtime = "nodejs";
-export const maxDuration = 180;
+export const maxDuration = 60;
 
 export async function POST(
   _request: Request,

@@ -5,6 +5,16 @@ import { useRouter } from "next/navigation";
 import type { AppStatus } from "@/lib/db-types";
 import { STATUS_COLUMNS } from "@/lib/db-types";
 
+// Tolerate non-JSON error bodies (e.g. a gateway 504 returns an HTML page,
+// which would otherwise throw a SyntaxError and swallow the failure).
+async function readJson(r: Response): Promise<Record<string, string> | null> {
+  try {
+    return await r.json();
+  } catch {
+    return null;
+  }
+}
+
 type Props = {
   applicationId: string;
   status: AppStatus;
@@ -30,9 +40,19 @@ export function AppActions({
       const r = await fetch(`/api/applications/${applicationId}/analyze`, {
         method: "POST",
       });
-      const json = await r.json();
-      if (!r.ok) setError(json.message || json.detail || json.error);
+      const json = await readJson(r);
+      if (!r.ok)
+        setError(
+          json?.message ||
+            json?.detail ||
+            json?.error ||
+            `Request failed (${r.status}). The analysis may have timed out — try again.`,
+        );
       else router.refresh();
+    } catch (e) {
+      setError(
+        e instanceof Error ? e.message : "Network error — please try again.",
+      );
     } finally {
       setAnalyzing(false);
     }
@@ -45,9 +65,19 @@ export function AppActions({
       const r = await fetch(`/api/applications/${applicationId}/research`, {
         method: "POST",
       });
-      const json = await r.json();
-      if (!r.ok) setError(json.message || json.detail || json.error);
+      const json = await readJson(r);
+      if (!r.ok)
+        setError(
+          json?.message ||
+            json?.detail ||
+            json?.error ||
+            `Request failed (${r.status}). The research may have timed out — try again.`,
+        );
       else router.refresh();
+    } catch (e) {
+      setError(
+        e instanceof Error ? e.message : "Network error — please try again.",
+      );
     } finally {
       setResearching(false);
     }
